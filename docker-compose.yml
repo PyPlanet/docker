@@ -1,0 +1,44 @@
+version: '3'
+services:
+  controller:
+    image: pyplanet/pyplanet
+    build: .
+    restart: always
+    links:
+      - dedicated
+      - db
+    depends_on:
+      - dedicated
+      - db
+    volumes:
+      - ./settings:/app/settings
+      - ./apps:/app/apps
+      - ./dedicated/UserData:/dedicated/UserData
+
+  dedicated:
+    image: pyplanet/maniaplanet-dedicated
+    restart: always
+    env_file: ./dedicated_vars.env
+    volumes:
+      - ./dedicated/UserData:/dedicated/UserData
+      - ./dedicated/Logs:/dedicated/Logs
+    expose:
+      - "2350"
+      - "2350/udp"
+      - "3450"
+      - "3450/udp"
+      - "5000"
+    ports:
+      - "5000"
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: pyplanet
+      MYSQL_USER: pyplanet
+      MYSQL_PASSWORD: pyplanet
+      MYSQL_ROOT_PASSWORD: pyplanet
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --innodb-flush-log-at-trx-commit=0
+    volumes:
+      - ./mysql:/var/lib/mysql

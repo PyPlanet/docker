@@ -1,0 +1,13 @@
+### JetBrains
+.idea
+*.iws
+*.iml
+
+### Python
+*.pyc
+
+### Docker
+dedicated_vars.env
+
+/dedicated
+/mysql
