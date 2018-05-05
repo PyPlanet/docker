@@ -1,3 +1,5 @@
+# PyPlanet 0.6.0
+
 FROM python:3.6
 MAINTAINER Tom Valk <tomvalk@lt-box.info>
 ENV PROJECT_ROOT /app
