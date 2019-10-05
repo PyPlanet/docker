@@ -17,7 +17,7 @@ WORKDIR $PROJECT_ROOT
 ADD manage.py $PROJECT_ROOT/manage.py
 
 # Install PyPlanet.
-RUN pip install pyplanet
+RUN pip install pyplanet==0.7.0	
 
 # Define volumes.
 VOLUME /app/settings /app/apps
