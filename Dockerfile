@@ -13,7 +13,7 @@ WORKDIR $PROJECT_ROOT
 # Install PyPlanet.
 RUN pip install pyplanet --upgrade	
 
-# Init project
+# Init project.
 RUN pyplanet init_project server
 WORKDIR $PROJECT_ROOT/server
 COPY base.py /app/server/settings/base.py
