@@ -1,6 +1,9 @@
 """
 This file contains the basic settings and overrides the default ones that are defined in the core.
 Documentation: http://pypla.net/
+
+If you want to use other configuration methods like YAML or JSON files, take a look at http://pypla.net/ and head to the
+configuration pages.
 """
 import os
 
@@ -29,6 +32,9 @@ OWNERS = {
 		'your-maniaplanet-login'
 	]
 }
+
+# Allow self-upgrading the installation. Disable on shared servers with one installation (hosting environment)!
+SELF_UPGRADE = False
 
 # Databases configuration holds an dictionary with information of the database backend.
 # Please refer to the documentation for all examples. http://pypla.net/
@@ -86,3 +92,8 @@ STORAGE = {
 #
 # 	}
 # }
+
+# Songs is a list of URLs to .ogg files of songs to be played by the music server.
+SONGS = {
+	'default': []
+}
