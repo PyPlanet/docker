@@ -1,6 +1,7 @@
 FROM python:3.7
 LABEL maintainer="Tom Valk <tomvalk@lt-box.info>"
 ENV PROJECT_ROOT /app
+ENV IS_DOCKER 1
 
 # Create maniaplanet user/group
 RUN addgroup --gid 1000 maniaplanet && \
