@@ -23,13 +23,12 @@ services:
       - ./dedicated/UserData:/dedicated/UserData
       - ./dedicated/Logs:/dedicated/Logs
     expose:
+      - "5000"
+    ports:
       - "2350"
       - "2350/udp"
       - "3450"
       - "3450/udp"
-      - "5000"
-    ports:
-      - "5000"
 
   db:
     image: mysql:5.7

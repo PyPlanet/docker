@@ -1,9 +1,10 @@
-# PyPlanet 0.6.0
-
-FROM python:3.6
-MAINTAINER Tom Valk <tomvalk@lt-box.info>
+FROM python:3.7
+LABEL maintainer="Tom Valk <tomvalk@lt-box.info>"
 ENV PROJECT_ROOT /app
-# ENV PYTHONUNBUFFERED 1
+
+# Create maniaplanet user/group
+RUN addgroup --gid 1000 maniaplanet && \
+    adduser -u 1000 --group maniaplanet --system
 
 RUN apt-get -q update \
 && apt-get install -y build-essential libssl-dev libffi-dev zlib1g-dev \
@@ -12,15 +13,20 @@ RUN apt-get -q update \
 # Create project root.
 RUN mkdir -p $PROJECT_ROOT
 WORKDIR $PROJECT_ROOT
-
-# Add manage.py
-ADD manage.py $PROJECT_ROOT/manage.py
+COPY base.py $PROJECT_ROOT/base.py
+RUN chown -R maniaplanet:maniaplanet $PROJECT_ROOT
 
 # Install PyPlanet.
-RUN pip install pyplanet==0.7.0	
+RUN pip install pyplanet --upgrade	
 
-# Define volumes.
-VOLUME /app/settings /app/apps
+USER maniaplanet
+
+# Init project.
+RUN pyplanet init_project server
+WORKDIR $PROJECT_ROOT/server/
+RUN cp ../base.py $PROJECT_ROOT/server/settings/base.py
+
+VOLUME $PROJECT_ROOT/server/
 
 ENTRYPOINT [ "./manage.py" ]
 CMD [ "start", "--pool=default", "--settings=settings" ]
