@@ -4,6 +4,7 @@ services:
   controller:
     image: pyplanet/controller
     restart: always
+    env_file: ./dedicated_vars.env
 
     depends_on:
       - dedicated
@@ -29,7 +30,9 @@ services:
       - "5000"
     ports:
       - "2350:2350"
+      - "2350:2350/udp"
       - "3450:3450"
+      - "3450:3450/udp"
 
   db:
     image: mariadb:latest
