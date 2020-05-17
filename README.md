@@ -89,7 +89,11 @@ This template use 4 named volumes :
 * **pyplanet** : PyPlanet folder.
 * **database** : /var/lib/mysql of mariadb container.
 
-This template is ready to use, you just need to fill the dedicated_vars.env.default and rename it dedicated_vars.env.
+To use this template you only have two things to do :
+* Rename dedicated_vars.env.default to dedicated_vars.env and fill it.
+* Generate your ssh host key by executing the ssh_host_keygen.sh script.
+
+Then you are ready to use it ``docker-compose up -d``.
 
 ### How to update ?
 

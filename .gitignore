@@ -3,11 +3,8 @@
 *.iws
 *.iml
 
-### Python
-*.pyc
-
 ### Docker
-dedicated_vars.env
+*dedicated_vars.env
 
-/dedicated
-/mysql
+### ssh host keys
+full-template/ssh_host_keys/*
