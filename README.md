@@ -1,6 +1,3 @@
 # Docker Compose for PyPlanet
 
-## Installation
-
-... todo ...
-
+## Please use the main project Dockerfile, this seperate repo has been deprecated.
